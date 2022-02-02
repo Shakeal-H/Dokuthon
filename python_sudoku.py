@@ -1,12 +1,16 @@
-from dokusan import generators
+from dokusan import generators, renderers, solvers
 import random
 import numpy as np
 
 # A sodoku generator and solver using dokusan and np, inspired by techwithtim
 
-# Generate a 
 board = np.array(list(str(generators.random_sudoku(avg_rank=random.randint(150,450)))))
-board = board.reshape(9, 9)
+board = board.reshape(9,9)
+
+alt_board = generators.random_sudoku(avg_rank=random.randint(150,450))
+
+def print_fancier_board(sudoku):
+    return print(renderers.colorful(sudoku))
 
 # Print the sudoku board from my array using dash(-) and pipe(|)
 def print_board(board):
@@ -33,3 +37,4 @@ def find_empty(board):
     return None
 
 print_board(board)
+print_fancier_board(alt_board)
