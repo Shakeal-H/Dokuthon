@@ -2,8 +2,6 @@ from dokusan import generators, renderers, solvers
 import random
 import numpy as np
 
-# A sodoku generator and solver using dokusan and np, inspired by techwithtim
-
 # Dokusan sodoku solver
 alt_board = generators.random_sudoku(avg_rank=random.randint(150,450))
 
