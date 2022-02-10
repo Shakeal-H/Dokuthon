@@ -1,24 +1,25 @@
-# pyGUI.py
-import pygame
+# Dokuthon GUI, by Shakeal Hodge
+
 from dokusan import generators
+from python_sudoku import valid_num
+import pygame
 import random
 import numpy as np
-from python_sudoku import valid_num
-pygame.font.init()
 import time
 
+pygame.font.init()
 
 board = np.array(list(str(generators.random_sudoku(avg_rank=random.randint(150,450)))))
 board = [int(i) for i in board]
 board = np.array(board)
 board = board.reshape(9,9)
 comp_board = [[board[x][y] for y in range(len(board[0]))] for x in range(len(board))]
-solved = 0
-
 WIDTH = 550
 background_color = (251, 247, 245)
 og_element_color = (0,0,0)
 buffer = 5
+solved = 0
+
 
 def isEmpty(val):
     if (val == 0):
@@ -26,7 +27,7 @@ def isEmpty(val):
     return False
 
 def sudoku_solver(win):
-    
+
     bo_font = pygame.font.SysFont('Verdana', 35)
     for i in range(0, len(board[0])):
         for j in range(0, len(board[0])):
@@ -79,14 +80,6 @@ def insert_num(win, position):
                     pygame.display.update()
                     return
                 return 
-            
-def format_time(secs):
-    sec = secs % 60
-    minute = secs//60
-
-    mat = " " + str(minute) + ":" + str(sec)
-    return mat
-
 
 def main():
     pygame.init()
