@@ -1,6 +1,7 @@
 from dokusan import generators, renderers, solvers
 import random
 import numpy as np
+from pyrsistent import b
 
 # Dokusan sodoku solver
 alt_board = generators.random_sudoku(avg_rank=random.randint(150,450))
@@ -18,8 +19,6 @@ board = np.array(list(str(generators.random_sudoku(avg_rank=random.randint(150,4
 board = [int(i) for i in board]
 board = np.array(board)
 board = board.reshape(9,9)
-
-
 
 
 def print_board(board):
@@ -45,7 +44,10 @@ def find_empty(board):
 
     return None
 
-def valid_num(board, row, col, num):
+def valid_num(board, position, num):
+    row = position[0]
+    col = position[1]
+
     for j in range(0, 9):
         if board[row][j] == num:
             return False
@@ -72,7 +74,7 @@ def solve(board):
         row, col = find
 
     for i in range(1,10):
-        if valid_num(board, row, col, i):
+        if valid_num(board, (row, col), i):
             board[row][col] = i
 
             if solve(board):
@@ -81,8 +83,3 @@ def solve(board):
             board[row][col] = 0
 
     return False
-
-print_board(board)
-solve(board)
-print("---------------------------------")
-print_board(board)
