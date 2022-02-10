@@ -37,7 +37,7 @@ def sudoku_solver(win):
                         value = bo_font.render(str(k), True, (47, 97, 61))
                         win.blit(value, (((j + 1)* 50 + 15, (i + 1)* 50)))
                         pygame.display.update()
-                        pygame.time.delay(2)
+                        pygame.time.delay(10)
 
                         sudoku_solver(win)
                         global solved
